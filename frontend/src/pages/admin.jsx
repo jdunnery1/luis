@@ -79,24 +79,26 @@ const Admin = () => {
     return (
         <div className={'relative w-screen h-screen bg-[#f04037] overflow-hidden flex justify-around items-center py-10 px-5'}>
             <div id={'card-maker'} className={'w-2/5 h-full px-5 py-3 flex flex-col items-center gap-3'}>
-                <div id={'card-placeholder'} className={'w-3/4 h-4/4 bg-slate-300 rounded-3xl flex items-center justify-center'}><img src={postImage.src} alt=""/></div>
+                <div id={'card-placeholder'} className={'w-3/4 h-4/4 bg-slate-300 rounded-3xl flex items-center justify-center overflow-hidden'}><img className={'object-scale-down overflow-hidden'} src={postImage.src} alt=""/></div>
                 <div className={'bg-white rounded-xl w-3/4 py-3 px-5'}>
                     <input autoComplete={'false'} id={'file-input'} onChange={handleFileUpload} type="file" className={'w-3/4'}/>
                     <button onClick={handleClear} className={'bg-[#f04037] text-white rounded-xl h-full w-1/4'}>Clear</button>
                 </div>
             </div>
             <form onSubmit={formSubmit} id={'info-maker'} className={'bg-white w-3/7 h-full rounded-3xl px-5 py-3 flex items-center flex-col justify-between'}>
-                <h1 className={'font-bold text-[40px]'}>Card Creator</h1>
                 <div>
-                    <input autoComplete={'false'} id={'card-title'} type="text" placeholder={'Card Title'} className={'text-[20px] border-b-2 mr-5 outline-none'}/>
+                    <h1 className={'font-bold text-[40px]'}>Product Creator</h1>
+                </div>
+                <div>
+                    <input autoComplete={'false'} id={'card-title'} type="text" placeholder={'Product Title *'} className={'text-[20px] border-b-2 mr-5 outline-none'}/>
                     <input autoComplete={'false'} id={'card-number'} type="text" placeholder={'Card Number'} className={'text-[20px] border-b-2 outline-none'}/>
                 </div>
                 <div>
-                    <input autoComplete={'false'} id={'card-price'} type="text" placeholder={'Price'} className={'text-[20px] border-b-2 mr-5 outline-none'}/>
-                    <input autoComplete={'false'} id={'card-qty'} type="text" placeholder={'Qty'} className={'text-[20px] border-b-2 outline-none'}/>
+                    <input autoComplete={'false'} id={'card-price'} type="text" placeholder={'Price *'} className={'text-[20px] border-b-2 mr-5 outline-none'}/>
+                    <input autoComplete={'false'} id={'card-qty'} type="text" placeholder={'Qty * '} className={'text-[20px] border-b-2 outline-none'}/>
                 </div>
                 <input autoComplete={'false'} id={'card-set'} type="text" placeholder={'Set'} className={'text-[20px] border-b-2 outline-none'}/>
-                <button className={'w-full h-1/10 bg-[#f04037] text-white font-bold rounded-xl'}>Upload Card</button>
+                <button className={'w-full h-1/10 bg-[#f04037] text-white font-bold rounded-xl'}>Upload Products</button>
             </form>
             <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} open={snackOpen} onClose={() => setSnack(false)} autoHideDuration={3000}><Alert severity={createResult ? 'success' : 'error'} variant={'filled'}>{createResult ? 'Card Successfully Uploaded' : 'Error Uploading Card | Check Fields'}</Alert></Snackbar>
             <button onClick={() => navigate('/')} className={'fixed top-5 left-5 bg-white rounded-xl px-5 py-3'}>Back</button>

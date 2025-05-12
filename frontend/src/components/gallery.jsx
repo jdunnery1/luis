@@ -22,7 +22,7 @@ const Gallery = ({setModal, setActiveCard}) => {
                     return (
                         <div onClick={() => {setModal(true); setActiveCard(card)}} className={'w-1/6 overflow-hidden flex flex-col items-center gap-2 *:pointer-events-none *:select-none'}>
                             <img className={'rounded-xl'} src={card.image} alt=""/>
-                            <h1 className={'font-bold text-[20px] text-[#f04037]'}>{card.title}</h1>
+                            <h1 className={'font-bold text-[20px] text-[#f04037] text-center'}>{card.title}</h1>
                             <h2 className={'text-[15px]'}>${card.price}</h2>
                         </div>
                     )
