@@ -19,6 +19,9 @@ export const createSession = async(req, res) => {
         }))
 
         const session = await nStripe.checkout.sessions.create({
+            shipping_address_collection: {
+                allowed_countries: ['US', 'CA'],
+            },
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
