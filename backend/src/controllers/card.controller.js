@@ -28,3 +28,13 @@ export const updateQty = async (req, res) => {
         console.log(e)
     }
 }
+
+export const removeCard = async (req, res) => {
+    try {
+        let card = await Card.deleteOne({cardId: req.query.cardId})
+        console.log(card)
+        res.json(card)
+    } catch (e) {
+        console.log(e)
+    }
+}

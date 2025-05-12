@@ -2,6 +2,7 @@ import {motion} from "motion/react";
 import Backdrop from "./backdrop.jsx";
 import {axiosInstance} from "../lib/axios.js";
 import {useUser} from "@clerk/clerk-react";
+import {useEffect, useState} from "react";
 
 const dropIn = {
     hidden: {
@@ -27,10 +28,20 @@ const dropIn = {
 const Modal = ({handleClose, activeCard, addToCart}) => {
 
     const {user} = useUser()
+    const[admin, setAdmin] = useState(false)
     const handleCart = () => {
         addToCart(activeCard)
         axiosInstance.put('/users/add-cart', {id: user?.id, card: activeCard})
         handleClose()
+    }
+
+    useEffect(() => {
+        axiosInstance.get(`/users/user?id=${user?.id}`).then((res) => setAdmin(res.data.admin))
+    }, []);
+
+    const handleRemove = () => {
+        axiosInstance.delete(`/cards/remove?cardId=${activeCard.cardId}`)
+        window.location.reload()
     }
 
     return (
@@ -52,6 +63,7 @@ const Modal = ({handleClose, activeCard, addToCart}) => {
                         {user && <button onClick={handleCart} className={'bg-white w-full rounded-xl text-[25px] font-[Pixelify_Sans]'}>Add to Cart</button>}
                     </div>
                 </div>
+                {admin && <button onClick={handleRemove} className={'absolute top-5 right-3 bg-[#f04037] text-white font-bold px-3 py-2 rounded-xl'}>Remove</button>}
             </motion.div>
         </Backdrop>
     )
