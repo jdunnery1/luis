@@ -31,7 +31,6 @@ const Modal = ({handleClose, activeCard, addToCart}) => {
     const[admin, setAdmin] = useState(false)
     const handleCart = () => {
         addToCart(activeCard)
-        axiosInstance.put('/users/add-cart', {id: user?.id, card: activeCard})
         handleClose()
     }
 

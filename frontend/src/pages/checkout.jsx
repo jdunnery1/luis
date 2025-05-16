@@ -49,6 +49,7 @@ const Checkout = () => {
                                     <img className={'h-full'} src={card.image} alt=""/>
                                     <div>
                                         <h1 className={'text-[28px] font-bold'}>{card.title}</h1>
+                                        <h2>Qty: {card.qty}</h2>
                                         <h2>${card.price}</h2>
                                     </div>
                                 </div>

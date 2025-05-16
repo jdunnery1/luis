@@ -45,3 +45,15 @@ export const emptyCart = async (req, res) => {
         console.log(e)
     }
 }
+
+export const increaseQty = async(req, res) => {
+    try {
+        let user = await User.findOne({clerkId: req.body.id})
+        user.cart.filter((c) => c.cardId === req.body.cardId)[0].qty += 1
+        console.log(user)
+        user.markModified('user.cart')
+        user.save()
+    } catch (e) {
+        console.log(e)
+    }
+}
